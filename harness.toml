@@ -1,0 +1,50 @@
+# Single source of project facts for every harness tool.
+
+[project]
+# Stable engine and module name. Never rename it after the jam starts.
+# The title players see lives in Config/DefaultGame.ini.
+codename = "JamGame"
+owner = "Deven2"
+game_repo = "megajam-game"
+harness_repo = "megajam-harness"
+team_name = "Pefeto"
+game_name = "TBD"
+
+[branches]
+integration = "dev"
+production = "main"
+# Installed copies follow this branch. Every merge into it has passed validation and evals.
+harness_track = "dev"
+
+[contest]
+kickoff_utc = "2026-11-11T19:00:00Z"
+start_utc = "2026-11-12T05:00:00Z"
+deadline_utc = "2026-11-16T01:59:00Z"
+freeze_hours_before_deadline = 8
+team_utc_offset_hours = -3
+
+[limits]
+# GitHub Free quotas. See docs/adr/0004-github-free.md.
+lfs_storage_gib = 10
+lfs_bandwidth_gib = 10
+lfs_warn_ratio = 0.7
+warn_file_mib = 100
+itch_browser_upload_gib = 1
+
+[[team]]
+name = "Nicolas"
+vendor = "claude"
+plan = "pro"
+duties = ["team owner", "CI runner host", "programming"]
+
+[[team]]
+name = "Ivan"
+vendor = "claude"
+plan = "pro"
+duties = ["art lead", "Blender assets", "Unreal content"]
+
+[[team]]
+name = "Pablo"
+vendor = "codex"
+plan = "pro"
+duties = ["programming"]

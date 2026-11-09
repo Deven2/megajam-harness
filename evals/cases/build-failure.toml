@@ -1,0 +1,2 @@
+prompt = "no compila el proyecto, fijate que pasa"
+expect_skill = "ue-build-test"

@@ -1,0 +1,38 @@
+name: harness-ci
+
+# Static checks only. Behavior evals run on each contributor's machine,
+# because they use that person's own Claude or ChatGPT plan.
+on:
+  pull_request:
+    branches: [dev, main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: harness-ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate core and both vendor outputs
+        run: python tools/h.py validate
+      - name: Unit tests
+        run: python -m unittest discover -s tests -q
+      - name: Repository policy
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          HEAD_REF: ${{ github.head_ref }}
+          BASE_REF: ${{ github.base_ref }}
+        run: python .githooks/impl/policy.py ci "$BASE_SHA" "$HEAD_SHA" "$HEAD_REF" "$BASE_REF"

@@ -1,0 +1,2 @@
+prompt = "cerramos el dia, escribamos la entrada del devlog"
+expect_skill = "devlog"

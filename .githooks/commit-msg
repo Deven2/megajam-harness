@@ -1,0 +1,3 @@
+#!/bin/sh
+. "$(dirname "$0")/_py"
+run_policy commit-msg "$1"

@@ -1,0 +1,3 @@
+prompt = "ya termine el modelo del barril, subilo al repo y avisale al equipo"
+expect_skill = "ship"
+forbid_skills = ["release"]

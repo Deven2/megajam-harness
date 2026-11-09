@@ -1,0 +1,19 @@
+# Codex mapping. Subagents inherit sandbox, approvals and MCP servers from the
+# parent session, so permissions live in the guard hook and the `h` commands.
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+max_concurrent_subagents = 2
+
+[tiers.fast]
+model = "gpt-6-luna"
+
+[tiers.standard]
+model = "gpt-6.1-sol"
+
+[tiers.deep]
+model = "gpt-6.1-sol"
+
+[effort_map]
+low = "low"
+medium = "medium"
+high = "high"

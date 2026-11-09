@@ -1,0 +1,70 @@
+# Seed for the team board. Pre-jam cards only: game tasks start after the theme reveal.
+
+[board]
+name = "MegaJam"
+lists = ["Backlog", "Doing", "Review", "Done"]
+
+[[card]]
+title = "Join the jam on itch.io"
+list = "Backlog"
+description = "Each member signs up at https://itch.io/jam/2026-epic-ai-megajam."
+
+[[card]]
+title = "Confirm a valid Epic account"
+list = "Backlog"
+description = "Each member needs an active Epic Account that is not a Cabined Account."
+
+[[card]]
+title = "Confirm student enrollment"
+list = "Backlog"
+description = "Every member must be enrolled in higher education for the Best Student category. Keep proof available."
+
+[[card]]
+title = "Turn off model training in your AI account"
+list = "Backlog"
+description = "All members, before connecting Unreal MCP. Epic's plugin requires that data sent through it is not used for training. See docs/getting-started.md."
+
+[[card]]
+title = "Install Unreal Engine 5.8 and Visual Studio"
+list = "Backlog"
+description = "All members. VS 2026, or VS 2022 17.14 or later, with Game development with C++."
+
+[[card]]
+title = "Install Blender"
+list = "Backlog"
+description = "Ivan first, others if needed."
+
+[[card]]
+title = "Install the harness"
+list = "Backlog"
+description = "All members. Clone megajam-harness, open it in your AI tool and ask it to install. Then run the doctor."
+
+[[card]]
+title = "Test Unreal MCP and Blender MCP"
+list = "Backlog"
+description = "Connect both servers and run a read-only call. Create no content before the jam starts."
+
+[[card]]
+title = "Register the self-hosted runner"
+list = "Backlog"
+description = "Nicolas. Follow docs/ci-cd.md in the game repository and run one empty package to time it."
+
+[[card]]
+title = "Rehearse ship on a throwaway repository"
+list = "Backlog"
+description = "Ivan ships a dummy file through natural language. Never rehearse in the game repository."
+
+[[card]]
+title = "Tag pre-jam-baseline"
+list = "Backlog"
+description = "Before Nov 12 05:00 UTC. Complete docs/compliance/pre-jam-declaration.md."
+
+[[card]]
+title = "Watch the kickoff and theme reveal"
+list = "Backlog"
+description = "Nov 11, 16:00 Argentina time, on Twitch, YouTube or X."
+
+[[card]]
+title = "Claim AI tool credits"
+list = "Backlog"
+description = "Check the itch page before kickoff. Claiming details were not yet published on Nov 8."

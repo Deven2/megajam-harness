@@ -1,0 +1,54 @@
+# Claude Code mapping. Aliases follow the newest model of each family.
+# Two members use the Pro plan, so the main session stays on Sonnet.
+main_model = "sonnet"
+builtin_tools = ["Read", "Grep", "Glob", "Edit", "Write", "NotebookEdit", "Bash", "PowerShell", "WebFetch", "WebSearch", "Agent"]
+
+[tiers]
+fast = "haiku"
+standard = "sonnet"
+deep = "opus"
+
+[capabilities]
+read = ["Read", "Grep", "Glob"]
+edit = ["Edit", "Write", "NotebookEdit"]
+shell = ["Bash", "PowerShell"]
+web = ["WebFetch", "WebSearch"]
+
+[env]
+CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH = "1"
+
+[permissions]
+default_mode = "acceptEdits"
+allow = [
+  "Bash(.harness/h *)",
+  "Bash(./.harness/h *)",
+  "Bash(git status*)",
+  "Bash(git diff*)",
+  "Bash(git log*)",
+  "Bash(git show*)",
+  "Bash(git branch --show-current*)",
+  "Bash(git fetch*)",
+  "Bash(git lfs locks*)",
+  "Bash(git lfs ls-files*)",
+  "Bash(gh pr view*)",
+  "Bash(gh pr list*)",
+  "Bash(gh pr checks*)",
+  "Bash(gh run list*)",
+  "Bash(gh run view*)",
+  "Bash(powershell -File Build/Scripts/*)",
+  "PowerShell(./Build/Scripts/*)",
+  "mcp__trello",
+  "mcp__github",
+  "mcp__unreal-mcp",
+  "mcp__blender",
+]
+deny = [
+  "Bash(git push*)",
+  "Bash(git commit*)",
+  "Read(./.env)",
+  "Read(./.env.*)",
+  "Edit(Binaries/**)",
+  "Edit(Intermediate/**)",
+  "Edit(Saved/**)",
+  "Edit(DerivedDataCache/**)",
+]

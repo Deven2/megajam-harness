@@ -1,0 +1,3 @@
+prompt = "arranco con las texturas del escenario, anotalo en el tablero"
+expect_skill = "trello-sync"
+forbid_skills = ["ship"]

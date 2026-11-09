@@ -1,0 +1,23 @@
+# Lifecycle hooks shared by every vendor. Each action runs `h hook <action>`.
+
+[[hook]]
+event = "SessionStart"
+matcher = "startup|resume|clear|compact"
+action = "session-start"
+timeout = 15
+status = "Checking harness status"
+
+[[hook]]
+event = "PreToolUse"
+matcher_claude = "Bash|PowerShell|Edit|Write|MultiEdit|NotebookEdit|mcp__.*"
+matcher_codex = "Bash|apply_patch|mcp__.*"
+action = "guard"
+timeout = 10
+status = "Checking policy"
+
+[[hook]]
+event = "PostToolUse"
+matcher = "mcp__blender__.*"
+action = "ledger"
+timeout = 10
+status = "Updating asset ledger"

@@ -1,0 +1,29 @@
+# scope = "agent": on Claude Code the server exists only inside its subagent,
+#                  which keeps its tools out of the main context.
+# scope = "session": configured for the session, required for browser sign-in.
+# Codex subagents always inherit the session's servers, so scope does not apply there.
+
+[servers.unreal-mcp]
+transport = "http"
+url = "http://127.0.0.1:8000/mcp"
+scope = "agent"
+
+[servers.blender]
+transport = "stdio"
+command = "uvx"
+args = ["mcp-for-blender"]
+env = { DISABLE_TELEMETRY = "true" }
+scope = "agent"
+
+[servers.github]
+transport = "http"
+url = "https://api.githubcopilot.com/mcp/"
+headers = { "X-MCP-Toolsets" = "context,repos,issues,pull_requests,actions" }
+auth = "github-token"
+scope = "session"
+
+[servers.trello]
+transport = "http"
+url = "https://mcp.trello.com/v1"
+auth = "oauth"
+scope = "session"

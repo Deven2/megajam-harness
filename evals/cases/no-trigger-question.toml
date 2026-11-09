@@ -1,0 +1,2 @@
+prompt = "What does the UPROPERTY macro do, in one sentence?"
+expect_no_skill = true

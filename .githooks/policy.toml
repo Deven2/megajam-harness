@@ -1,0 +1,6 @@
+[repo]
+kind = "harness"
+protected_branches = ["main", "dev"]
+
+[limits]
+max_non_lfs_mib = 5

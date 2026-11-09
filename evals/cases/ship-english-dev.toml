@@ -1,0 +1,2 @@
+prompt = "The dash ability works now. Please commit and push it."
+expect_skill = "ship"

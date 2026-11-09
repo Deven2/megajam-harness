@@ -1,0 +1,29 @@
+#!/bin/sh
+# Sourced by the hooks. Finds Python 3.11+ and runs the policy script.
+
+repo_root="$(git rev-parse --show-toplevel)"
+policy="$repo_root/.githooks/impl/policy.py"
+
+run_policy() {
+    if [ -f "$repo_root/.harness/python.txt" ]; then
+        recorded="$(cat "$repo_root/.harness/python.txt")"
+        if [ -x "$recorded" ]; then
+            PYTHONUTF8=1 "$recorded" "$policy" "$@"
+            return $?
+        fi
+    fi
+    if command -v python >/dev/null 2>&1 && python -c "import tomllib" >/dev/null 2>&1; then
+        PYTHONUTF8=1 python "$policy" "$@"
+        return $?
+    fi
+    if command -v py >/dev/null 2>&1 && py -3 -c "import tomllib" >/dev/null 2>&1; then
+        PYTHONUTF8=1 py -3 "$policy" "$@"
+        return $?
+    fi
+    if command -v uv >/dev/null 2>&1; then
+        PYTHONUTF8=1 uv run --quiet --no-project --python 3.12 python "$policy" "$@"
+        return $?
+    fi
+    echo "[policy] Python 3.11 or newer is required. Install it with: winget install astral-sh.uv" >&2
+    return 1
+}
