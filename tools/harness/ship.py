@@ -34,9 +34,10 @@ SHIP_ENV = {"HARNESS_SHIP": "1", "PYTHONUTF8": "1"}
 EXIT_CODES = {
     "shipped": 0, "pr-open": 0, "pushed": 0, "nothing-to-ship": 0,
     "binary-conflict": 3, "locked-by-other": 3, "text-conflict": 3,
-    "close-editor": 4, "checks-failed": 5, "policy-rejected": 6,
+    "close-editor": 4, "checks-failed": 5, "checks-missing": 5, "policy-rejected": 6,
 }
 CONTENT_PREFIXES = ("Content/", "Source/", "Config/", "Plugins/")
+CHECK_START_ATTEMPTS = 12  # About two minutes for GitHub to register the first check.
 
 
 class Stop(Exception):
@@ -253,7 +254,7 @@ class ShipFlow:
 
     def _wait_for_checks(self, gh: list[str], pr: dict[str, Any]) -> None:
         delay = float(os.environ.get("HARNESS_CHECK_WAIT", "10"))
-        for _ in range(4):
+        for _ in range(CHECK_START_ATTEMPTS):
             time.sleep(delay)
             try:
                 checks = run([*gh, "pr", "checks", str(pr["number"]), "--watch", "--interval", "10"], cwd=self.root, timeout=1500)
@@ -264,6 +265,7 @@ class ShipFlow:
                 return
             if "no checks" not in combined.lower():
                 raise Stop("checks-failed", pr=pr["url"], output=combined[-1500:])
+        raise Stop("checks-missing", pr=pr["url"], message="CI never started, so the pull request stayed open and nothing was merged.")
 
     def _return_to_base(self) -> str | None:
         feature = self.branch

@@ -16,6 +16,7 @@ The person may not know git. Do not ask them to run commands or explain branches
    - `text-conflict`: delegate the markers to `ue-cpp-dev`, then ship again.
    - `close-editor`: ask them to close Unreal Editor, then ship again.
    - `checks-failed`: delegate the failure to `ue-test-runner` and report what it finds.
+   - `checks-missing`: CI never started. Say the work is safe in an open pull request and that the team owner must check the repository's Actions tab.
    - `policy-rejected`: fix what the output says. Asset names are the usual cause.
 3. If this was a milestone or something went surprisingly well or badly, pass one line to `--note` so it reaches the devlog.
 

@@ -8,7 +8,7 @@ GitHub Team would add server-side rules on private repositories and more LFS. Th
 
 ## Decision
 
-Enforcement happens in git hooks, the guard and `pr-fast`. `h ship` waits for checks before merging.
+Enforcement happens in git hooks, the guard and `pr-fast`. `h ship` waits for checks before merging. If no check starts, it leaves the pull request open.
 
 ## Consequences
 
