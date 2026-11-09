@@ -160,7 +160,7 @@ def print_checks(checks: list[Check]) -> None:
     for check in checks:
         line = f"{icons[check.status]} {check.name}: {check.detail}"
         print(line)
-        if check.fix:
+        if check.fix and check.status != "ok":
             print(f"       fix: {check.fix}")
 
 
