@@ -123,6 +123,14 @@ class FlowTests(unittest.TestCase):
         body = git(work, "log", "--no-merges", "-1", "--format=%B").stdout
         self.assertIn("feat(player): add first dash", body)
 
+    def test_missing_checks_stop_the_merge(self):
+        work = self.clone("no_checks")
+        self.write(work, "Source/JamGame/DashNoChecks.cpp")
+        with mock.patch.dict(os.environ, {"GH_STUB_NO_CHECKS": "1"}):
+            result = self.ship(work, summary="add unchecked dash")
+        self.assertEqual(result["status"], "checks-missing", result)
+        self.assertEqual(json.loads(self.state.read_text())[result["branch"]]["state"], "OPEN")
+
     def test_pre_jam_content_is_rejected_then_allowed_at_start(self):
         work = self.clone("prejam")
         self.write(work, "Source/JamGame/Dash2.cpp")

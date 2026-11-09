@@ -29,6 +29,8 @@ elif args[:2] == ["pr", "view"]:
         sys.exit(1)
     print(json.dumps(state[args[2]]))
 elif args[:2] == ["pr", "checks"]:
+    if os.environ.get("GH_STUB_NO_CHECKS"):
+        sys.exit("no checks reported on this branch")
     print("All checks were successful")
 elif args[:2] == ["pr", "merge"]:
     number = int(args[2])
