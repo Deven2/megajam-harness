@@ -15,5 +15,6 @@ Board: `MegaJam`. Lists: `Backlog`, `Doing`, `Review`, `Done`.
 - If no card matches, create one. Card titles are short and in English.
 - Card descriptions have three sections: `Need`, `Goal` and `Steps`.
 - A task each teammate does on their own gets an `Each member` checklist with one item per person.
+- Every card gets a color label: blue setup, green jam rules and AI vendors, orange art, purple Unreal, code and CI/CD.
 
 If the subagent names card members to add, tell the person: the connector cannot add them. The Trello connector cannot permanently delete cards, only archive them.

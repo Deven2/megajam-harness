@@ -8,9 +8,12 @@ name = "MegaJam"
 lists = ["Backlog", "Doing", "Review", "Done"]
 team = ["Nicolas", "Ivan", "Pablo"]
 
+# Label colors: blue setup, green jam rules and AI vendors, orange art, purple Unreal, code and CI/CD.
+
 [[card]]
 title = "Join the jam on itch.io"
 list = "Backlog"
+labels = ["green"]
 each_member = true
 need = "Only people who join the jam on itch.io can be part of the team's entry."
 goal = "All three of us are signed up for the jam and listed on the team."
@@ -23,6 +26,7 @@ steps = [
 [[card]]
 title = "Confirm a valid Epic account"
 list = "Backlog"
+labels = ["green"]
 each_member = true
 need = "The rules require every entrant to have an active Epic Account that is not a Cabined Account."
 goal = "Each of us has confirmed that their Epic account qualifies."
@@ -35,6 +39,7 @@ steps = [
 [[card]]
 title = "Confirm student enrollment"
 list = "Backlog"
+labels = ["green"]
 each_member = true
 need = "The Best Student category requires every team member to be enrolled in higher education."
 goal = "Each of us has current proof of enrollment ready if Epic asks."
@@ -47,6 +52,7 @@ steps = [
 [[card]]
 title = "Turn off model training in your AI account"
 list = "Backlog"
+labels = ["green"]
 each_member = true
 need = "Epic's Unreal MCP plugin requires that data sent through it is not used to train AI models."
 goal = "Training is off in every AI account we use with Unreal MCP."
@@ -60,6 +66,7 @@ steps = [
 [[card]]
 title = "Install Unreal Engine 5.8 and Visual Studio"
 list = "Backlog"
+labels = ["blue", "purple"]
 each_member = true
 need = "Everyone opens and builds the project locally, and the C++ project needs Visual Studio to compile."
 goal = "Unreal Engine 5.8 and a supported Visual Studio work on each of our machines."
@@ -73,6 +80,7 @@ steps = [
 [[card]]
 title = "Install Blender"
 list = "Backlog"
+labels = ["blue", "orange"]
 need = "Art is made in Blender and exported to Unreal."
 goal = "Blender is installed on Ivan's machine, and on anyone else's who will touch art."
 steps = [
@@ -83,6 +91,7 @@ steps = [
 [[card]]
 title = "Install the harness"
 list = "Backlog"
+labels = ["blue"]
 each_member = true
 need = "The harness gives our AI tools the same rules, skills and commands, so everyone works the same way."
 goal = "The harness is installed for each of us and the doctor shows no failures."
@@ -97,6 +106,7 @@ steps = [
 [[card]]
 title = "Test Unreal MCP and Blender MCP"
 list = "Backlog"
+labels = ["blue", "purple", "orange"]
 each_member = true
 need = "Agents control the editor and Blender through MCP, and a broken connection would cost jam time."
 goal = "Each of us has made one read-only MCP call from their AI tool."
@@ -111,6 +121,7 @@ steps = [
 [[card]]
 title = "Register the self-hosted runner"
 list = "Backlog"
+labels = ["blue", "purple"]
 need = "GitHub's hosted runners have no Unreal Engine and too little disk, so builds run on Nicolas's PC."
 goal = "The runner is registered with the label ue58 and one package run has been timed."
 steps = [
@@ -122,6 +133,7 @@ steps = [
 [[card]]
 title = "Rehearse ship on a throwaway repository"
 list = "Backlog"
+labels = ["blue"]
 need = "Ivan publishes his work through plain language, and the first try should not happen during the jam."
 goal = "Ivan has shipped a dummy file to a throwaway repository and seen it merged."
 steps = [
@@ -133,6 +145,7 @@ steps = [
 [[card]]
 title = "Tag pre-jam-baseline"
 list = "Backlog"
+labels = ["green", "purple"]
 need = "Epic can ask for proof of what existed before the jam, and the rules require declaring it."
 goal = "The tag marks the blank project and the pre-jam declaration is complete."
 steps = [
@@ -144,6 +157,7 @@ steps = [
 [[card]]
 title = "Watch the kickoff and theme reveal"
 list = "Backlog"
+labels = ["green"]
 each_member = true
 need = "The theme is revealed at kickoff, and the game must demonstrate it."
 goal = "All three of us know the theme and the kickoff announcements."
@@ -156,6 +170,7 @@ steps = [
 [[card]]
 title = "Claim AI tool credits"
 list = "Backlog"
+labels = ["green"]
 need = "The jam offers AI tool credits, which would ease our plan limits during the build."
 goal = "We know how the credits work and have claimed the ones we can use."
 steps = [
