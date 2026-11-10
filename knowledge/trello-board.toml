@@ -97,7 +97,7 @@ need = "The harness gives our AI tools the same rules, skills and commands, so e
 goal = "The harness is installed for each of us and the doctor shows no failures."
 steps = [
   "Accept the GitHub invitations to megajam-harness and megajam-game.",
-  "Clone megajam-harness to C:\\Repos\\MegaJam\\harness and open it in your AI tool.",
+  "Clone megajam-harness to C:\\Repos\\MegaJam\\megajam-harness and open it in your AI tool.",
   "Ask it to install the harness. Ivan uses the art role.",
   "Run `.harness/h doctor` in the game folder and fix any failure.",
   "Check your item in the checklist.",

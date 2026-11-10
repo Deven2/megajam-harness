@@ -130,7 +130,7 @@ def collect_checks(vendor: str | None, game_root: Path | None, role: str = "dev"
     if game_root:
         path_text = str(game_root)
         if " " in path_text:
-            checks.append(Check("game-path", "fail" if vendor == "codex" else "warn", f"{path_text} contains spaces", "Clone to a short path without spaces, for example C:\\Repos\\MegaJam\\game."))
+            checks.append(Check("game-path", "fail" if vendor == "codex" else "warn", f"{path_text} contains spaces", "Clone to a short path without spaces, for example C:\\Repos\\MegaJam\\megajam-game."))
         elif len(path_text) > 60:
             checks.append(Check("game-path", "warn", f"{path_text} is long", "Use a shorter path to avoid Windows path limits."))
         else:
