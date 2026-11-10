@@ -8,6 +8,7 @@ description: Verify the game is ready to submit to the jam. Use when someone ask
 1. Run `{{h}} submission-check --zip <path to the zip>`.
 2. Explain each unchecked item in plain words and offer to fix what an agent can fix.
 3. Items only a person can confirm live in `docs/compliance/submission.toml`. Ask, then set them.
-4. Remind the team to make the harness repository public, so the devlog link works for the judges.
+4. Give the person the "Tools you used" line the check prints, to paste into the form. Partner prizes read it, such as the Hyper3D Rodin cash pool.
+5. Remind the team to make the harness repository public, so the devlog link works for the judges.
 
 A person must complete the itch.io form and press submit. Never do this step, even if asked. Rules section 17 forbids entry by an AI agent.

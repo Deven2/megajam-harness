@@ -3,7 +3,7 @@
 Paraphrased digest for agents and teammates. **The Official Rules prevail over this file.**
 
 - Official Rules version digested: last updated **2026-11-05** (16 pages, EN).
-- Retrieved: 2026-11-08.
+- Retrieved: 2026-11-08. Itch page re-read on 2026-11-10: it added partner perks, the "Tools you used" field, an experimental web build and tips. The Official Rules had not changed.
 - Before submitting, re-read the Change Log on the last page of the Official Rules.
 
 ## Sources
@@ -49,6 +49,8 @@ Total build window: 92 h 59 min. Late submissions are disqualified.
 - Entry must include: team name, each member's full name and Epic-linked email, the designated Team Owner, game name, gameplay video link, list of sourced assets.
 - Gameplay video: 30 to 60 seconds, 1920x1080 or higher.
 - Optional dev log link, mandatory for the Glass Box prize and submitted with the entry during the Contest Period (§10).
+- Optional "Tools you used" field. Partner prizes read it: the Hyper3D Rodin cash pool (USD 10,000 split among winning teams that used Rodin) and the NVIDIA RTX Award (one way to qualify is the NvRTX engine branch). The list comes from the Tools table in the game's `docs/compliance/ai-usage.md`.
+- Web builds are experimental: they need the Unreal Engine 5.9 MegaJam Preview, a Shipping build, `index.html` at the top of the zip, under 500 MB total and 200 MB per file. The team stays on UE 5.8 desktop, so this does not apply.
 - All content and entry information in English, including in-game text, audio and video (§7i).
 - Must not require additional software to run (§7f).
 - Must demonstrate the Contest Theme (§7g).
@@ -77,9 +79,21 @@ Anything made earlier must be declared. The Sponsor may request these materials 
 
 Teen-appropriate (13+). No disparagement of Epic, people or products. No infringing, hateful, obscene or illegal material, no nudity, no animal cruelty.
 
-## Judging (§9)
+## Judging (§9, itch page)
 
-Seven criteria, up to 5 points each: Ambition and Innovation, Use of Theme, Fun Factor, Gameplay, Visuals, Level Design, Audio. Ties are re-scored with double weight on Fun Factor.
+A panel scores each qualified entry from 1 to 5 on seven criteria. Ties are re-scored with double weight on Fun Factor.
+
+| Criterion | What judges look for (itch page) |
+| --- | --- |
+| Ambition and innovation | Something a four-day jam could not usually pull off: a new mechanic, a bold art style or a bigger scope |
+| Theme | A fresh, clever take on the theme |
+| Fun factor | Gameplay that is fun and satisfying |
+| Gameplay | Solid, original mechanics that feel good |
+| Visuals | A strong, consistent look, photoreal or stylized |
+| Level design and progression | Spaces that support the gameplay and guide the player |
+| Audio | Sound and music that add to the experience |
+
+The organizers' tips: set agents and MCP up before Nov 12, scope small then polish, package a test build on day two, keep notes for the dev log, and show gameplay in the first five seconds of the video.
 
 ## Prizes (§10, §11, §13)
 
@@ -96,6 +110,23 @@ Seven criteria, up to 5 points each: Ambition and Innovation, Use of Theme, Fun 
 - At most one main prize and one modifier prize per submission.
 - Prizes go to the Team Owner through Hyperwallet. The Team Owner handles the split and the tax form (W-9, W-8BEN or W-8BENE).
 - Development Continuation Grants (up to 50,000 / 25,000 / 10,000 for UE) are invitation-only, separate from prizes, and not guaranteed.
+
+## Partner perks (itch page, Nov 10)
+
+Codes and claim links arrive by email on Nov 10 to everyone who joined the jam on itch.io. Using them is optional and does not affect judging. Deadlines as published:
+
+| Partner | What | Deadline |
+| --- | --- | --- |
+| Claude | USD 25 in API credits on platform.claude.com | Credits last 90 days from claiming |
+| Hyper3D | Rodin Business subscription with 208 credits | Redeem by Nov 16, benefits end Nov 20 |
+| Tripo | 3,000 credits and Pro access | Redeem by Nov 16, Pro ends Nov 18 |
+| Meshy | One month of Pro, 1,000 credits, credit card required | Redeem by Nov 17 |
+| PBRgen | Free access and credits | Nov 7 to 15 |
+| WeLoveIndies | Sound and music | Non-commercial license only |
+| SpaceXSI | USD 50 for Cursor and Grok Bot | Claim by Nov 15, lasts 7 days |
+| fal, Diversion, Rokoko, Reallusion, NetApp | Credits, version control, mocap, animation, a build session | See the itch page |
+
+Any output from these tools is AI-generated or sourced content: check its license (C-07), record it in the ledger with `--commercial`, and add the tool to the Tools table (C-13).
 
 ## Constraints agents must enforce
 
@@ -115,11 +146,12 @@ Team interpretations are marked. When in doubt, take the conservative reading an
 | C-10 | Teen rating, no third-party logos, nothing reusing tutorial content. | §7d, §8, §15d |
 | C-11 | Dev log is published and linked before the deadline. | §10 |
 | C-12 | Content freeze and packaging finish well before the deadline. | Team rule |
+| C-13 | Add every AI or partner tool to the Tools table in `docs/compliance/ai-usage.md` the first time it is used, and record whether each asset's license allows a commercial release. | itch page, team rule |
 
 ## Open items
 
 - Contest Theme: revealed at kickoff on Nov 11.
-- AI tool credits from partners: claiming details not yet published as of retrieval.
+- Team registration and the pre-jam declaration: no form on the itch page as of Nov 10. The team and its members are entered with the submission. Check again after kickoff.
 - Engine version: the rules do not mandate one. The team targets UE 5.8.
 
 ## Source differences to keep in mind

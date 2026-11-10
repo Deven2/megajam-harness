@@ -69,6 +69,8 @@ def build_parser() -> argparse.ArgumentParser:
     add.add_argument("--origin", required=True)
     add.add_argument("--reference", default="")
     add.add_argument("--license", required=True)
+    add.add_argument("--commercial", choices=["yes", "no", "unknown"], default="unknown",
+                     help="Whether the license also allows a commercial release")
     add.add_argument("--path", required=True)
     add.add_argument("--notes", default="")
     ledger_commands.add_parser("check")
@@ -163,7 +165,7 @@ def dispatch(args: argparse.Namespace) -> int:
 
         if args.ledger_command == "check":
             return records.ledger_check(start)
-        return records.ledger_add(args.kind, args.origin, args.reference, args.license, args.path, args.notes, start)
+        return records.ledger_add(args.kind, args.origin, args.reference, args.license, args.commercial, args.path, args.notes, start)
 
     if name == "submission-check":
         from .records import submission_check

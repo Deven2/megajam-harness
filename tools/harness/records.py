@@ -30,7 +30,8 @@ from .common import (
 from .ship import SHIP_ENV
 
 LEDGER_RELATIVE = Path("docs") / "compliance" / "assets-ledger.csv"
-LEDGER_HEADER = ["added_utc", "kind", "origin", "reference", "license", "path", "notes"]
+LEDGER_HEADER = ["added_utc", "kind", "origin", "reference", "license", "commercial_use", "path", "notes"]
+AI_USAGE_RELATIVE = Path("docs") / "compliance" / "ai-usage.md"
 DEVLOG_DIR = HARNESS_ROOT / "devlog"
 DEVLOG_TRAILER = re.compile(r"^Devlog:\s*(.+)$", re.MULTILINE)
 
@@ -117,6 +118,17 @@ def append_ledger(root: Path, row: dict[str, str]) -> None:
     path = root / LEDGER_RELATIVE
     path.parent.mkdir(parents=True, exist_ok=True)
     is_new = not path.is_file()
+    if not is_new:
+        with path.open(encoding="utf-8", newline="") as handle:
+            reader = csv.DictReader(handle)
+            existing = list(reader)
+            header = reader.fieldnames or []
+        if header != LEDGER_HEADER:  # An older ledger lacks a column: rewrite it with the current header.
+            with path.open("w", encoding="utf-8", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=LEDGER_HEADER, lineterminator="\n")
+                writer.writeheader()
+                for old in existing:
+                    writer.writerow({key: old.get(key) or ("unknown" if key == "commercial_use" else "") for key in LEDGER_HEADER})
     with path.open("a", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=LEDGER_HEADER, lineterminator="\n")
         if is_new:
@@ -124,12 +136,12 @@ def append_ledger(root: Path, row: dict[str, str]) -> None:
         writer.writerow(row)
 
 
-def ledger_add(kind: str, origin: str, reference: str, license_name: str, asset_path: str, notes: str, start: Path) -> int:
+def ledger_add(kind: str, origin: str, reference: str, license_name: str, commercial: str, asset_path: str, notes: str, start: Path) -> int:
     root = repo_root(start)
     append_ledger(root, {
         "added_utc": now_utc().isoformat(timespec="seconds"),
         "kind": kind, "origin": origin, "reference": reference,
-        "license": license_name, "path": asset_path, "notes": notes,
+        "license": license_name, "commercial_use": commercial, "path": asset_path, "notes": notes,
     })
     print(json.dumps({"status": "recorded", "path": asset_path, "kind": kind}))
     return 0
@@ -143,6 +155,15 @@ def read_ledger(root: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def label(row: dict[str, str]) -> str:
+    return row.get("path") or row.get("reference") or row.get("origin") or "?"
+
+
+def not_commercial(rows: list[dict[str, str]]) -> list[str]:
+    """Assets the jam may use but a commercial release could not, without a new license."""
+    return [label(row) for row in rows if (row.get("commercial_use") or "unknown").strip().lower() != "yes"]
+
+
 def ledger_check(start: Path) -> int:
     rows = read_ledger(repo_root(start))
     unknown = [row for row in rows if row["license"].strip().upper() in ("", "UNKNOWN")]
@@ -150,7 +171,8 @@ def ledger_check(start: Path) -> int:
         "total": len(rows),
         "sourced": sum(row["kind"] == "sourced" for row in rows),
         "ai_generated": sum(row["kind"] == "ai-generated" for row in rows),
-        "missing_license": [row["path"] or row["reference"] for row in unknown],
+        "missing_license": [label(row) for row in unknown],
+        "not_cleared_for_commercial_use": not_commercial(rows),
     }, indent=2))
     return 1 if unknown else 0
 
@@ -172,6 +194,7 @@ def hook_ledger() -> int:
             "origin": origin,
             "reference": json.dumps(tool_input, ensure_ascii=False)[:300],
             "license": "CC0" if "polyhaven" in origin.lower().replace(" ", "") else "UNKNOWN",
+            "commercial_use": "yes" if "polyhaven" in origin.lower().replace(" ", "") else "unknown",
             "path": "",
             "notes": "Recorded automatically. Fill in the license and final Content path.",
         })
@@ -182,6 +205,34 @@ def hook_ledger() -> int:
 
 
 # --- Submission checklist ---------------------------------------------------
+
+def read_tools(root: Path) -> list[str]:
+    """Tool names from the Tools table in ai-usage.md, pasted into the form's "Tools you used" field."""
+    path = root / AI_USAGE_RELATIVE
+    if not path.is_file():
+        return []
+    tools, in_section = [], False
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.startswith("## "):
+            in_section = line.strip() == "## Tools"
+            continue
+        if in_section and line.startswith("|"):
+            cell = line.strip().strip("|").split("|")[0].strip()
+            if cell and cell != "Tool" and not set(cell) <= set("-: "):
+                tools.append(cell)
+    return tools
+
+
+def normalize(name: str) -> str:
+    return re.sub(r"[^a-z0-9]", "", name.lower())
+
+
+def tools_missing_from_list(rows: list[dict[str, str]], tools: list[str]) -> list[str]:
+    """Origins of AI-generated assets that the tools list does not mention."""
+    names = [normalize(tool) for tool in tools if normalize(tool)]
+    origins = sorted({row["origin"].strip() for row in rows if row.get("kind") == "ai-generated" and (row.get("origin") or "").strip()})
+    return [origin for origin in origins if not any(normalize(origin) in name or name in normalize(origin) for name in names)]
+
 
 def public_url_ok(url: str) -> bool:
     try:
@@ -215,6 +266,10 @@ def submission_check(zip_path: Path | None, start: Path) -> int:
     rows = read_ledger(root)
     unknown = [row for row in rows if row["license"].strip().upper() in ("", "UNKNOWN")]
     add("every ledger entry has a license", not unknown, f"{len(unknown)} missing of {len(rows)}")
+    tools = read_tools(root)
+    missing_tools = tools_missing_from_list(rows, tools)
+    add("tools list covers every AI asset source", bool(tools) and not missing_tools,
+        f"add to {AI_USAGE_RELATIVE.as_posix()}: {', '.join(missing_tools)}" if missing_tools else f"{len(tools)} tools")
     if zip_path:
         expected = f"{team}_{game}.zip".replace(" ", "")
         add("zip name follows TeamName_GameName", zip_path.name == expected, f"expected {expected}, found {zip_path.name}")
@@ -230,5 +285,11 @@ def submission_check(zip_path: Path | None, start: Path) -> int:
     print(f"Time left: {format_delta(deadline - now)} (phase {contest_phase(cfg, now)})\n")
     for name, ok, detail in results:
         print(f"[{'x' if ok else ' '}] {name}" + (f"  ({detail})" if detail else ""))
+    if tools:
+        print(f"\nTools you used (paste into the form): {', '.join(tools)}")
+        print("Partner prizes read this field: list Rodin for the Hyper3D pool, NvRTX for the NVIDIA RTX Award.")
+    blocked = not_commercial(rows)
+    if blocked:
+        print(f"\nNote: {len(blocked)} assets are fine for the jam but not cleared for commercial use: {', '.join(blocked)}")
     print("\nA person must complete the itch.io form and press submit (rules section 17).")
     return 0 if all(ok for _, ok, _ in results) else 1
