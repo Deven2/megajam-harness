@@ -1,70 +1,164 @@
 # Seed for the team board. Pre-jam cards only: game tasks start after the theme reveal.
+# Each card becomes a description with Need, Goal and Steps sections.
+# each_member = true adds an "Each member" checklist with one item per teammate,
+# and all three teammates become card members (added by hand: the connector cannot).
 
 [board]
 name = "MegaJam"
 lists = ["Backlog", "Doing", "Review", "Done"]
+team = ["Nicolas", "Ivan", "Pablo"]
 
 [[card]]
 title = "Join the jam on itch.io"
 list = "Backlog"
-description = "Each member signs up at https://itch.io/jam/2026-epic-ai-megajam."
+each_member = true
+need = "Only people who join the jam on itch.io can be part of the team's entry."
+goal = "All three of us are signed up for the jam and listed on the team."
+steps = [
+  "Sign in to itch.io, or create an account.",
+  "Open https://itch.io/jam/2026-epic-ai-megajam and click Join jam.",
+  "Check your item in the checklist.",
+]
 
 [[card]]
 title = "Confirm a valid Epic account"
 list = "Backlog"
-description = "Each member needs an active Epic Account that is not a Cabined Account."
+each_member = true
+need = "The rules require every entrant to have an active Epic Account that is not a Cabined Account."
+goal = "Each of us has confirmed that their Epic account qualifies."
+steps = [
+  "Sign in at epicgames.com and open your account settings.",
+  "Confirm the account is active and is not marked as a Cabined Account.",
+  "Check your item in the checklist.",
+]
 
 [[card]]
 title = "Confirm student enrollment"
 list = "Backlog"
-description = "Every member must be enrolled in higher education for the Best Student category. Keep proof available."
+each_member = true
+need = "The Best Student category requires every team member to be enrolled in higher education."
+goal = "Each of us has current proof of enrollment ready if Epic asks."
+steps = [
+  "Get a current enrollment certificate or student ID from your institution.",
+  "Keep it somewhere you can share quickly. Do not upload it to the repositories.",
+  "Check your item in the checklist.",
+]
 
 [[card]]
 title = "Turn off model training in your AI account"
 list = "Backlog"
-description = "All members, before connecting Unreal MCP. Epic's plugin requires that data sent through it is not used for training. See docs/getting-started.md."
+each_member = true
+need = "Epic's Unreal MCP plugin requires that data sent through it is not used to train AI models."
+goal = "Training is off in every AI account we use with Unreal MCP."
+steps = [
+  "Claude: Settings > Privacy > turn off the option to help improve Claude.",
+  "ChatGPT: Settings > Data controls > turn off the option to improve the model.",
+  "Do it before connecting Unreal MCP. Details in docs/getting-started.md in the game repository.",
+  "Check your item in the checklist.",
+]
 
 [[card]]
 title = "Install Unreal Engine 5.8 and Visual Studio"
 list = "Backlog"
-description = "All members. VS 2026, or VS 2022 17.14 or later, with Game development with C++."
+each_member = true
+need = "Everyone opens and builds the project locally, and the C++ project needs Visual Studio to compile."
+goal = "Unreal Engine 5.8 and a supported Visual Studio work on each of our machines."
+steps = [
+  "Install Unreal Engine 5.8 from the Epic Games Launcher.",
+  "Install VS 2026, or VS 2022 17.14 or later, with the Game development with C++ workload.",
+  "Run the harness doctor to confirm both.",
+  "Check your item in the checklist.",
+]
 
 [[card]]
 title = "Install Blender"
 list = "Backlog"
-description = "Ivan first, others if needed."
+need = "Art is made in Blender and exported to Unreal."
+goal = "Blender is installed on Ivan's machine, and on anyone else's who will touch art."
+steps = [
+  "Install Blender with `winget install BlenderFoundation.Blender` or from blender.org.",
+  "Run the harness doctor with the art role to confirm it.",
+]
 
 [[card]]
 title = "Install the harness"
 list = "Backlog"
-description = "All members. Clone megajam-harness, open it in your AI tool and ask it to install. Then run the doctor."
+each_member = true
+need = "The harness gives our AI tools the same rules, skills and commands, so everyone works the same way."
+goal = "The harness is installed for each of us and the doctor shows no failures."
+steps = [
+  "Accept the GitHub invitations to megajam-harness and megajam-game.",
+  "Clone megajam-harness to C:\\Repos\\MegaJam\\harness and open it in your AI tool.",
+  "Ask it to install the harness. Ivan uses the art role.",
+  "Run `.harness/h doctor` in the game folder and fix any failure.",
+  "Check your item in the checklist.",
+]
 
 [[card]]
 title = "Test Unreal MCP and Blender MCP"
 list = "Backlog"
-description = "Connect both servers and run a read-only call. Create no content before the jam starts."
+each_member = true
+need = "Agents control the editor and Blender through MCP, and a broken connection would cost jam time."
+goal = "Each of us has made one read-only MCP call from their AI tool."
+steps = [
+  "Open the project in Unreal Editor and start its MCP server.",
+  "Open Blender and click Start MCP Server, if you use Blender.",
+  "Run `.harness/h doctor --live`, then ask your AI tool for one read-only call, such as listing actors.",
+  "Create no content before the jam starts.",
+  "Check your item in the checklist.",
+]
 
 [[card]]
 title = "Register the self-hosted runner"
 list = "Backlog"
-description = "Nicolas. Follow docs/ci-cd.md in the game repository and run one empty package to time it."
+need = "GitHub's hosted runners have no Unreal Engine and too little disk, so builds run on Nicolas's PC."
+goal = "The runner is registered with the label ue58 and one package run has been timed."
+steps = [
+  "Follow docs/ci-cd.md in the game repository.",
+  "Start C:\\actions-runner\\run.cmd and trigger the package workflow by hand.",
+  "Note how long it took.",
+]
 
 [[card]]
 title = "Rehearse ship on a throwaway repository"
 list = "Backlog"
-description = "Ivan ships a dummy file through natural language. Never rehearse in the game repository."
+need = "Ivan publishes his work through plain language, and the first try should not happen during the jam."
+goal = "Ivan has shipped a dummy file to a throwaway repository and seen it merged."
+steps = [
+  "Create a throwaway repository. Never rehearse in the game repository.",
+  "Ask the AI tool, in your own words, to publish a dummy file.",
+  "Confirm the pull request merged and the checks ran.",
+]
 
 [[card]]
 title = "Tag pre-jam-baseline"
 list = "Backlog"
-description = "Before Nov 12 05:00 UTC. Complete docs/compliance/pre-jam-declaration.md."
+need = "Epic can ask for proof of what existed before the jam, and the rules require declaring it."
+goal = "The tag marks the blank project and the pre-jam declaration is complete."
+steps = [
+  "Create and push the pre-jam-baseline tag before Nov 12, 05:00 UTC.",
+  "At kickoff, complete the game design section of docs/compliance/pre-jam-declaration.md.",
+  "Set declaration_complete in docs/compliance/submission.toml.",
+]
 
 [[card]]
 title = "Watch the kickoff and theme reveal"
 list = "Backlog"
-description = "Nov 11, 16:00 Argentina time, on Twitch, YouTube or X."
+each_member = true
+need = "The theme is revealed at kickoff, and the game must demonstrate it."
+goal = "All three of us know the theme and the kickoff announcements."
+steps = [
+  "Watch on Nov 11, 16:00 Argentina time, on Twitch, YouTube or X.",
+  "Write down the theme and any rule changes for the team.",
+  "Check your item in the checklist.",
+]
 
 [[card]]
 title = "Claim AI tool credits"
 list = "Backlog"
-description = "Check the itch page before kickoff. Claiming details were not yet published on Nov 8."
+need = "The jam offers AI tool credits, which would ease our plan limits during the build."
+goal = "We know how the credits work and have claimed the ones we can use."
+steps = [
+  "Check the itch page before kickoff. Claiming details were not yet published on Nov 8.",
+  "If the credits are per person, tell each teammate how to claim theirs.",
+]

@@ -1,0 +1,3 @@
+prompt = "creá una tarjeta para que los tres instalemos el plugin de Blender"
+expect_skill = "trello-sync"
+forbid_skills = ["ship"]

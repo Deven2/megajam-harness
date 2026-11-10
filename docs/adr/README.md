@@ -7,3 +7,4 @@
 | [0003](0003-devlog-in-harness.md) | The devlog lives in this repository |
 | [0004](0004-github-free.md) | GitHub Free |
 | [0005](0005-own-eval-runner.md) | Our own eval runner |
+| [0006](0006-card-and-entry-format.md) | Fixed formats for Trello cards and devlog entries |

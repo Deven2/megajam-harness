@@ -13,5 +13,7 @@ Board: `MegaJam`. Lists: `Backlog`, `Doing`, `Review`, `Done`.
 - Shipped work moves to `Done` with the PR link as a comment.
 - Work that needs a teammate's decision moves to `Review`.
 - If no card matches, create one. Card titles are short and in English.
+- Card descriptions have three sections: `Need`, `Goal` and `Steps`.
+- A task each teammate does on their own gets an `Each member` checklist with one item per person.
 
-The Trello connector cannot permanently delete cards, only archive them.
+If the subagent names card members to add, tell the person: the connector cannot add them. The Trello connector cannot permanently delete cards, only archive them.
