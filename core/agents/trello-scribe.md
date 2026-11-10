@@ -36,14 +36,12 @@ When you touch a card whose description lacks these sections, rewrite it in this
 
 Every card gets at least one category label, by color. A card can have more than one.
 
-| Color | Category |
-| --- | --- |
-| blue | Setup: installing and configuring tools |
-| green | Jam rules and AI vendors: sign-ups, accounts, declarations, credits |
-| orange | Art: Blender, models, textures |
-| purple | Unreal Engine, code and CI/CD |
-
-The board's labels have no names, so pick them by color.
+| Label | Color | Category |
+| --- | --- | --- |
+| `Setup` | blue | Installing and configuring tools |
+| `Jam` | green | Jam rules and AI vendors: sign-ups, accounts, declarations, credits |
+| `Design` | orange | Art: Blender, models, textures |
+| `Technical` | purple | Unreal Engine, code and CI/CD |
 
 ## Tasks for each member
 

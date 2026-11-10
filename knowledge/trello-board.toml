@@ -8,7 +8,7 @@ name = "MegaJam"
 lists = ["Backlog", "Doing", "Review", "Done"]
 team = ["Nicolas", "Ivan", "Pablo"]
 
-# Label colors: blue setup, green jam rules and AI vendors, orange art, purple Unreal, code and CI/CD.
+# Labels by color: blue Setup, green Jam, orange Design, purple Technical.
 
 [[card]]
 title = "Join the jam on itch.io"
