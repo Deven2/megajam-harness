@@ -1,11 +1,13 @@
 ---
 name: trello-sync
-description: Read or update the team board (Trello, also called the board or task list). Use right away, without searching files, when someone starts a task, asks to note something on the board, asks what is pending or who does what, or after work ships. Any language.
+description: Read or update the team board (Trello, also called the board or task list). Use only when someone asks for it, such as to note something on the board, to update it at the end of the day, or to ask what is pending or who does what. Any language.
 ---
 
 # Trello sync
 
 Delegate to the `trello-scribe` subagent. Give it the task in plain words, the person's name and the PR link if there is one.
+
+The team updates the board by hand during the day. Use it only when a person asks, typically once at the end of the day: move finished cards to `Done` and add what is new. Never update it on your own after shipping.
 
 Board: `MegaJam`. Lists: `Backlog`, `Doing`, `Review`, `Done`.
 

@@ -42,11 +42,14 @@ def build_parser() -> argparse.ArgumentParser:
         sub.add_argument("--base")
         sub.add_argument("--keep-mine", action="store_true")
         sub.add_argument("--no-merge", action="store_true")
+        sub.add_argument("--ci-down", metavar="REASON",
+                         help="CI is broken, not the code: merge without waiting for checks and record why on the pull request")
 
     add_change_arguments(commands.add_parser("ship", help="Commit, open a PR, wait for CI and merge"))
     contribute = commands.add_parser("contribute", help="Validate, run evals and ship a harness change")
     add_change_arguments(contribute)
     contribute.add_argument("--skip-evals", action="store_true")
+    contribute.add_argument("--blocker", metavar="REASON", help="During the jam: what this change unblocks. Required while the harness is frozen.")
 
     release = commands.add_parser("release", help="Release flow")
     release.add_argument("action", choices=["start", "finish"])
@@ -93,7 +96,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def change_options(args: argparse.Namespace) -> dict:
-    return {key: getattr(args, key) for key in ("type", "scope", "summary", "body", "note", "card", "paths", "base", "keep_mine", "no_merge")}
+    return {key: getattr(args, key) for key in ("type", "scope", "summary", "body", "note", "card", "paths", "base", "keep_mine", "no_merge", "ci_down")}
 
 
 def dispatch(args: argparse.Namespace) -> int:
@@ -185,7 +188,7 @@ def dispatch(args: argparse.Namespace) -> int:
 
         root, kind = find_marker_root(start)
         vendor = (read_lock(root).get("vendor") if kind == "game" and root else None) or os.environ.get("HARNESS_VENDOR", "claude")
-        return quality.contribute(change_options(args), vendor, args.skip_evals)
+        return quality.contribute(change_options(args), vendor, args.skip_evals, args.blocker)
     raise HarnessError(f"Unknown command: {name}")
 
 

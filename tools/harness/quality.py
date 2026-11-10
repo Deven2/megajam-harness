@@ -16,7 +16,7 @@ from typing import Any
 from .common import HARNESS_ROOT, HarnessError, git, load_config, read_toml, run
 from .core_model import load_agents, load_hooks, load_instructions, load_servers, load_skills, load_vendor
 from .render import render
-from .ship import ShipFlow, EXIT_CODES
+from .ship import ShipFlow, EXIT_CODES, freeze_message
 
 NAME = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 NON_ENGLISH = re.compile(r"[áéíóúñ¿¡ÁÉÍÓÚÑ]")
@@ -295,7 +295,14 @@ def unit_tests() -> bool:
     return result.returncode == 0
 
 
-def contribute(options: dict[str, Any], vendor: str, skip_evals: bool) -> int:
+def contribute(options: dict[str, Any], vendor: str, skip_evals: bool, blocker: str | None = None) -> int:
+    cfg = load_config()
+    frozen = freeze_message(cfg, blocker)
+    if frozen:
+        print(json.dumps({"status": "harness-frozen", "message": frozen}, indent=2))
+        return EXIT_CODES["harness-frozen"]
+    if blocker:
+        options = {**options, "body": f"{options.get('body') or ''}\n\nFreeze exception: {blocker}".strip()}
     errors = validate()
     if errors:
         print("\n".join(f"ERROR {error}" for error in errors))
@@ -306,6 +313,6 @@ def contribute(options: dict[str, Any], vendor: str, skip_evals: bool) -> int:
         status = run_evals(vendor, "changed")
         if status != 0:
             return 6
-    result = ShipFlow(HARNESS_ROOT, load_config(), options).run()
+    result = ShipFlow(HARNESS_ROOT, cfg, options).run()
     print(json.dumps(result, indent=2))
     return EXIT_CODES.get(result["status"], 1)
