@@ -34,7 +34,7 @@ class RenderTests(unittest.TestCase):
         self.assertEqual(set(servers), {"github", "trello"})
         operator = (self.target / ".claude" / "agents" / "ue-editor-operator.md").read_text(encoding="utf-8")
         self.assertIn("  - unreal-mcp:", operator)
-        self.assertIn("127.0.0.1:8000/mcp", operator)
+        self.assertIn("127.0.0.1:8765/mcp", operator)
         shipper = (self.target / ".claude" / "agents" / "git-shipper.md").read_text(encoding="utf-8")
         self.assertIn("model: haiku", shipper)
         self.assertIn(".harness/h ship", shipper)

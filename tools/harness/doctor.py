@@ -150,7 +150,7 @@ def collect_checks(vendor: str | None, game_root: Path | None, role: str = "dev"
             current = head == lock.get("harness_sha")
             checks.append(Check("harness-render", "ok" if current else "warn", lock.get("harness_sha", "")[:8], "" if current else "Run `h render`."))
     if live:
-        checks.append(Check("unreal-mcp-port", "ok" if port_open(8000) else "warn", "127.0.0.1:8000", "Open the editor and start the MCP server."))
+        checks.append(Check("unreal-mcp-port", "ok" if port_open(8765) else "warn", "127.0.0.1:8765", "Open the editor and start the MCP server."))
         checks.append(Check("blender-mcp-port", "ok" if port_open(9876) else "warn", "127.0.0.1:9876", "Open Blender and click Start MCP Server."))
     return checks
 

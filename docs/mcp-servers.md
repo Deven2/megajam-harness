@@ -5,7 +5,7 @@
 Epic's plugin, experimental in UE 5.8. Internal name `ModelContextProtocol`.
 
 - **Setup:** none. The game project enables Unreal MCP and All Toolsets, limits the server to the Editor target and starts it automatically.
-- **Endpoint:** `http://127.0.0.1:8000/mcp`. No authentication, loopback only.
+- **Endpoint:** `http://127.0.0.1:8765/mcp`. No authentication, loopback only. The plugin defaults to 8000, which other software often takes, so the game sets `ServerPortNumber=8765` in `Config/DefaultEditorPerProjectUserSettings.ini`.
 - **Tools:** tool search is on by default, so the client sees `list_toolsets`, `describe_toolset` and `call_tool`.
 - **Limit:** calls run serially on the game thread. Never overlap them.
 - **Extending:** `meta = (AICallable)` on a `UFUNCTION`, then `ModelContextProtocol.RefreshTools`. New declarations need an editor restart.
