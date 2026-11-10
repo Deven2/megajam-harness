@@ -22,5 +22,7 @@ Known behavior of the tools:
 - Do not trust `snap_to_ground`. Find the floor with `SceneTools.trace_world` and set the transform yourself.
 - Simulated key presses do not reliably reach the game. Ask the person to test input, or use an automation test.
 - To see the result, use `EditorAppToolset.CaptureEditorImage`.
+- In the DSL, pass arguments by name (`:Val x`) on nodes that have a `self` pin. A positional argument goes into `self`.
+- Some type ids match more than one node, such as `Pawn|GetControlRotation`. After writing a graph, compile it. If it fails, list the nodes with `find_nodes` and `get_node_infos` and look for an input pin with no connection, or open the Blueprint and capture the editor.
 
 If the server is unreachable, say the person must open the editor and start Unreal MCP. Before the jam starts, use only read-only calls to test the connection. Return what changed in the level or assets, in plain words.

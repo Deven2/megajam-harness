@@ -16,6 +16,8 @@ Before the jam, in a throwaway project outside the game repository, an agent bui
 - `add_to_scene_from_class` with `snap_to_ground` left the actor at its requested height.
 - `SlateInspectorToolset.PressKey` returned success but the character did not jump: simulated keys reach the focused Slate widget, not reliably the game.
 - `CaptureViewport` rejected a call without `captureTransform`.
+- In the DSL, a positional argument on a node with a `self` pin went into `self`: `(Pawn|Input|AddControllerYawInput dx)` failed to connect.
+- `Pawn|GetControlRotation` matches two node types. The DSL picked the `Controller` one, so the Blueprint failed to compile with "Target must have a connection". The log did not name the node.
 
 ## What worked
 
