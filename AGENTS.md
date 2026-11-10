@@ -10,7 +10,7 @@ Do these steps in order. Run the commands yourself and explain results in plain 
 
 1. Work out which AI tool is running here: Claude Code (`claude`) or Codex (`codex`). Ask if unsure.
 2. Ask their role: `dev` (programming) or `art` (art and Unreal). The art role also downloads the heavy Blender sources.
-3. Ask where the game should live. Recommend a short path without spaces, such as `C:\Repos\MegaJam\game`.
+3. Ask where the game should live. Recommend `C:\Repos\MegaJam\megajam-game`, next to this clone in `C:\Repos\MegaJam\megajam-harness`: each folder is named after its repository, and the path is short and has no spaces.
 4. Check `python --version`. It must be 3.11 or newer. If it is missing, run `winget install astral-sh.uv` and replace `python tools/h.py` with `uv run --python 3.12 tools/h.py` below.
 5. Run `python tools/h.py install --vendor <claude|codex> --game <path> --role <dev|art> --clone`.
 6. Read the report. For each `FAIL` line, show its fix and offer to run it. The person must do anything that needs a browser sign-in, such as `gh auth login --scopes workflow`.

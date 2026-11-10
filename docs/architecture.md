@@ -30,9 +30,11 @@ A rule that must always hold belongs in the lower layers.
 
 ```
 C:\Repos\MegaJam\
-  harness\   clone of this repository
-  game\      clone of the game repository, where the AI tool runs
+  megajam-harness\   clone of this repository
+  megajam-game\      clone of the game repository, where the AI tool runs
 ```
+
+Each folder is named after its repository, which is also what `git clone` uses by default.
 
 The game folder holds a small `.harness/` directory with shims pointing back at the harness clone.
 
