@@ -1,5 +1,11 @@
 # The rules changed our plan before we wrote any code
 
+## From Nicolas
+
+Laying the groundwork for the jam! Our team has two technical profiles (Pablo and me) and one artistic profile (Ivan). Given the contest's timeline, we decided to focus our project's use of AI on making it easy for any of the three of us to contribute using only natural language, so that each of us can even work outside our comfort zone. The idea behind the harness is that it works as an abstraction portal: the ideas we come up with can be turned into our game in a predefined way, following, for example, a work or style standard, a particular structure, or the jam's own rules.
+
+## What changed
+
 We are three students from Argentina entering the 2026 Epic AI MegaJam with Unreal Engine 5.8, C++ and Blender. One of us is an artist who does not program. Two of us use Claude and one uses ChatGPT.
 
 We started with a plan centered on AI: a shared multi-agent harness that anyone could install and use in plain language. Then we read all 16 pages of the official rules with an agent, and six things changed.
