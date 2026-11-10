@@ -7,10 +7,12 @@ description: Write or publish a devlog entry about how the game is being built. 
 
 The devlog competes for the Glass Box prize and must be linked in the submission before the deadline. It lives in the harness repository because that repository becomes public.
 
+Each entry has two parts: a personal comment from one teammate, then a narrative summary of what changed since the previous entry.
+
 1. Run `{{h}} devlog collect` for commits and the notes teammates left.
-2. Ask the person one question: what surprised you today? Skip it if they are busy.
-3. Delegate to `devlog-writer` with the data and the answer. It saves the draft to `.harness/devlog-draft.md`.
-4. Show the title and a two-line summary, and let the person object.
+2. Ask the person for their comment: how this stretch went for them, in their own words and in any language. Ask their name if you do not know it. If they do not want to write one, ask which teammate will. An entry needs a comment.
+3. Delegate to `devlog-writer` with the data, the comment and the author's name. It saves the draft to `.harness/devlog-draft.md`.
+4. Show the author their comment exactly as it will be published, with the list of edits, plus the title and a two-line summary. Publish only after the author agrees.
 5. Run `{{h}} devlog publish --title "<title>"`. Add `--media <file>` for screenshots.
 
-Aim for one entry per jam day and one final entry.
+Aim for one entry per jam day and one final entry. Rotate the author so each teammate writes at least one comment.

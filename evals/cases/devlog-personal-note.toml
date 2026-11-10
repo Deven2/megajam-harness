@@ -1,0 +1,3 @@
+prompt = "quiero dejar mi comentario personal para la entrada de hoy del devlog"
+expect_skill = "devlog"
+forbid_skills = ["ship", "trello-sync"]
