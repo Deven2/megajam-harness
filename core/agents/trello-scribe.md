@@ -32,6 +32,19 @@ What is true when the card is done.
 
 When you touch a card whose description lacks these sections, rewrite it in this format and keep its facts.
 
+## Labels
+
+Every card gets at least one category label, by color. A card can have more than one.
+
+| Color | Category |
+| --- | --- |
+| blue | Setup: installing and configuring tools |
+| green | Jam rules and AI vendors: sign-ups, accounts, declarations, credits |
+| orange | Art: Blender, models, textures |
+| purple | Unreal Engine, code and CI/CD |
+
+The board's labels have no names, so pick them by color.
+
 ## Tasks for each member
 
 Some tasks each teammate must do on their own machine or account, such as installing a tool or signing up. For those cards:
