@@ -1,0 +1,3 @@
+prompt = "poné una luz puntual arriba del personaje en el nivel abierto"
+expect_skill = "ue-editor-task"
+forbid_skills = ["ship"]

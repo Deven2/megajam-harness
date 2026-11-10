@@ -5,7 +5,7 @@
 
 [servers.unreal-mcp]
 transport = "http"
-url = "http://127.0.0.1:8000/mcp"
+url = "http://127.0.0.1:8765/mcp"
 scope = "agent"
 
 [servers.blender]
