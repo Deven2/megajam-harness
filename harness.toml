@@ -35,16 +35,16 @@ itch_browser_upload_gib = 1
 name = "Nicolas"
 vendor = "claude"
 plan = "pro"
-duties = ["team owner", "CI runner host", "programming"]
+duties = ["team owner", "gameplay lead", "CI runner host", "programming", "level design"]
 
 [[team]]
 name = "Ivan"
 vendor = "claude"
 plan = "pro"
-duties = ["art lead", "Blender assets", "Unreal content"]
+duties = ["art lead", "audio", "Blender assets", "Unreal content", "level design"]
 
 [[team]]
 name = "Pablo"
 vendor = "codex"
 plan = "pro"
-duties = ["programming"]
+duties = ["programming", "level design"]

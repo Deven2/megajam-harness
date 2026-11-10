@@ -35,6 +35,10 @@ Write in English, in the first person plural, about 300 to 500 words, as a story
 - At least one thing that went wrong and how we handled it.
 - How AI was used in practice: what we delegated, what we kept for ourselves, and what it cost us in time or rework.
 - One concrete artifact: a command, a prompt, a before and after, or a number.
+- The decisions we made, each with the judging criteria it serves: Ambition and innovation, Theme, Fun factor, Gameplay, Visuals, Level design, Audio. For example: "We cut the second enemy type to polish the jump (Fun factor, Gameplay)." Name a criterion only when the data supports the link.
+- If the data includes scorecard rows, end with a short table of the latest scores and what changed since the previous entry.
+
+From the jam start the story is the game: what we built, cut and learned. Mention the harness only where it changed how we worked.
 
 Use only facts from the data you are given. If something is missing, leave it out. No hype, no filler.
 

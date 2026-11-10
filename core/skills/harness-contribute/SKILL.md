@@ -5,6 +5,8 @@ description: Improve the team's AI harness itself, such as a skill, subagent, ho
 
 # Harness contribution
 
+From the jam start the harness is frozen. Do not change it. Help the person find a workaround and note the idea for the devlog instead. Only a blocker with no simple workaround justifies a change, the person decides, and the command needs `--blocker "<what it blocks>"`.
+
 Delegate to the `harness-curator` subagent. Give it the problem and a concrete example of what went wrong.
 
 The change is made in `core/` of the harness clone at `{{harness_path}}`, never in the generated files here. The contribution then runs validation, unit tests and the evals for what changed before it can merge:

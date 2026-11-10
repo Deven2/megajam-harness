@@ -16,7 +16,9 @@ from typing import Any
 
 from .common import (
     BINARY_EXTENSIONS,
+    HARNESS_ROOT,
     LOCKABLE_EXTENSIONS,
+    contest_phase,
     HarnessError,
     gh_command,
     git,
@@ -34,10 +36,19 @@ SHIP_ENV = {"HARNESS_SHIP": "1", "PYTHONUTF8": "1"}
 EXIT_CODES = {
     "shipped": 0, "pr-open": 0, "pushed": 0, "nothing-to-ship": 0,
     "binary-conflict": 3, "locked-by-other": 3, "text-conflict": 3,
-    "close-editor": 4, "checks-failed": 5, "checks-missing": 5, "policy-rejected": 6,
+    "close-editor": 4, "checks-failed": 5, "checks-missing": 5, "policy-rejected": 6, "harness-frozen": 7,
 }
 CONTENT_PREFIXES = ("Content/", "Source/", "Config/", "Plugins/")
 CHECK_START_ATTEMPTS = 12  # About two minutes for GitHub to register the first check.
+
+
+def freeze_message(cfg: dict[str, Any], blocker: str | None, now: Any = None) -> str | None:
+    """The harness is frozen from the jam start: only blockers with no simple workaround may change it."""
+    if contest_phase(cfg, now) not in ("jam", "freeze") or (blocker or "").strip():
+        return None
+    return ("The harness is frozen during the jam (docs/adr/0007-harness-freeze.md). Use a workaround and note the idea "
+            "for the devlog. If this blocks the game and no simple workaround exists, run again with --blocker \"<what it blocks>\".")
+
 
 
 class Stop(Exception):
@@ -100,6 +111,10 @@ class ShipFlow:
         return f"{kind}({scope}): {summary}"
 
     def _run(self) -> dict[str, Any]:
+        if self.root.resolve() == HARNESS_ROOT.resolve():
+            frozen = freeze_message(self.cfg, self.options.get("blocker"))
+            if frozen:
+                return {"status": "harness-frozen", "message": frozen}
         git_dir = Path(git_out(["rev-parse", "--absolute-git-dir"], self.root))
         if (git_dir / "MERGE_HEAD").exists():
             self._finish_merge()
@@ -235,7 +250,13 @@ class ShipFlow:
             raise HarnessError("The pull request was created but could not be read back.")
         if self.options.get("no_merge"):
             return {"status": "pr-open", "pr": pr["url"]}
-        self._wait_for_checks(gh, pr)
+        ci_down = self.options.get("ci_down")
+        if ci_down:
+            # Fallback for broken CI infrastructure. The local git hooks already ran the same policy at commit and push.
+            comment = f"Merged without waiting for CI: {ci_down}\n\nRe-run the checks on `{self.base}` when CI is back."
+            run([*gh, "pr", "comment", str(pr["number"]), "--body", comment], cwd=self.root, timeout=120)
+        else:
+            self._wait_for_checks(gh, pr)
         run([*gh, "pr", "merge", str(pr["number"]), "--merge"], cwd=self.root, check=True, timeout=120)
         git(["push", "origin", "--delete", self.branch], self.root, env=SHIP_ENV, check=False, timeout=120)
         for path in self.acquired_locks:
@@ -244,6 +265,8 @@ class ShipFlow:
         self.acquired_locks.clear()
         note = self._return_to_base()
         result: dict[str, Any] = {"status": "shipped", "pr": pr["url"], "merged_into": self.base, "locks_released": released}
+        if ci_down:
+            result["ci_skipped"] = ci_down
         if note:
             result["note"] = note
         return result

@@ -1,0 +1,3 @@
+prompt = "ya dijeron el tema en el stream, ayudame a elegir que juego hacemos"
+expect_skill = "kickoff"
+forbid_skills = ["ship", "trello-sync"]

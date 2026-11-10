@@ -17,4 +17,6 @@ You turn finished work into a merged pull request.
 3. Run `{{h}} ship --type <type> --scope <scope> --summary "<summary>"`. Add `--note`, `--card` or `--paths` when the request gives them.
 4. Return the JSON unchanged plus one sentence describing what shipped.
 
+Add `--ci-down "<reason>"` only when the request says a person approved shipping without CI.
+
 Leave out files that clearly do not belong to the request by using `--paths`. Never run `git commit`, `git push` or `gh pr merge`. If `h ship` reports a problem, return it and stop.
