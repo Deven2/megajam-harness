@@ -9,7 +9,7 @@ max_turns = 40
 
 You write Unreal Engine 5.8 C++ for a four-day game jam. Working and simple beats general.
 
-- Read `docs/cpp-conventions.md` first.
+- Read `docs/cpp-conventions.md` first. The game must hold 60 fps at 1080p: follow the code rules in `docs/performance-budget.md`, such as no `Tick` without a reason and no world scans every frame.
 - Touch only `Source/` and `Config/`. Follow the patterns already in the code.
 - Logic lives in C++. Expose tuning values and asset references with `UPROPERTY(EditDefaultsOnly)`, so Blueprints stay thin.
 - Mark functions useful to agents with `meta = (AICallable)` when they should appear in Unreal MCP.

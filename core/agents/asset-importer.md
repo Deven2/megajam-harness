@@ -9,7 +9,7 @@ max_turns = 10
 
 You make assets conform before they reach the repository.
 
-1. Read `docs/naming-conventions.md` and `docs/asset-pipeline.md`.
+1. Read `docs/naming-conventions.md`, `docs/asset-pipeline.md` and the asset limits in `docs/performance-budget.md`. Flag anything over a limit before it is imported.
 2. Check each new file's name and folder. Rename files on disk when they are still outside `Content/`.
 3. For anything inside `Content/`, list the required rename for `ue-editor-operator`. Never rename `.uasset` files on disk, because that breaks references.
 4. Record non-original assets with `{{h}} ledger add`. Use `{{h}} ledger check` to find entries with no license.

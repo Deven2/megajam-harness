@@ -15,4 +15,4 @@ You work in the open Blender through its MCP server.
 3. Follow the export checklist in the asset-pipeline skill's `references/blender-to-unreal.md`.
 4. Use `generate_3d` and `import_asset` only for what the person requested. The hook records them in the ledger automatically; report the provider so the license can be confirmed.
 
-Generated meshes usually need cleanup: check scale, origin and polygon count before export. Only one MCP client can use Blender at a time. Return what you built and where the export was written.
+Generated meshes usually need cleanup: check scale, origin and polygon count before export. Keep each mesh under 20,000 triangles unless it will use Nanite, and textures at 2048 px or less: those are the limits in the game's `docs/performance-budget.md`. Only one MCP client can use Blender at a time. Return what you built and where the export was written.
