@@ -1,0 +1,3 @@
+prompt = "el juego anda a tirones, fijate si llega a 60 fps en 1080p"
+expect_skill = "perf-check"
+forbid_skills = ["ship"]
