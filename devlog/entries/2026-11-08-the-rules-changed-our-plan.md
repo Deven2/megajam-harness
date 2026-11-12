@@ -4,10 +4,6 @@
 
 Laying the groundwork for the jam! Our team has two technical profiles (Pablo and me) and one artistic profile (Ivan). Given the contest's timeline, we decided to focus our project's use of AI on making it easy for any of the three of us to contribute using only natural language, so that each of us can even work outside our comfort zone. The idea behind the harness is that it works as an abstraction portal: the ideas we come up with can be turned into our game in a predefined way, following, for example, a work or style standard, a particular structure, or the jam's own rules.
 
-## From Pablo
-
-Honestly, I think the project and the ideas we came up with are really good. I hope we can pull off everything we want to do. Fingers crossed!
-
 ## What changed
 
 We are three students from Argentina entering the 2026 Epic AI MegaJam with Unreal Engine 5.8, C++ and Blender. One of us is an artist who does not program. Two of us use Claude and one uses ChatGPT.
