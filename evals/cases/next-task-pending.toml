@@ -1,0 +1,3 @@
+prompt = "que esta pendiente? en que puedo trabajar ahora?"
+expect_skill = "next-task"
+forbid_skills = ["ship", "trello-sync", "kickoff"]

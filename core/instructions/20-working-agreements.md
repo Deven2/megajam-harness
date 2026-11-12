@@ -13,3 +13,4 @@
 - The harness is frozen from the jam start. Do not edit it or propose changes. If it gets in the way, find a simple workaround and note the idea for the devlog. Only a blocker with no simple workaround justifies `{{h}} contribute --blocker "<what it blocks>"`, and a person decides that.
 - Broken CI must never stop the game. If the checks never start or fail for a reason unrelated to the change, such as an outage, a runner offline or a timeout, a person can approve `{{h}} ship --ci-down "<reason>"`. It merges without waiting and leaves the reason on the pull request. Never use it to get past a check that found a real problem.
 - The team updates the Trello board by hand. Use the board only when a person asks.
+- The shared to-do list is `docs/design/tasks.md` in the game repository. When work starts or finishes a task, update its row in the same ship. When someone asks what is pending or what to do, use the `next-task` skill.

@@ -8,7 +8,7 @@ owner = "Deven2"
 game_repo = "megajam-game"
 harness_repo = "megajam-harness"
 team_name = "Pefeto"
-game_name = "TBD"
+game_name = "Trust Me, I Was There"
 
 [branches]
 integration = "dev"
