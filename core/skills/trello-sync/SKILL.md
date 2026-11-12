@@ -1,6 +1,6 @@
 ---
 name: trello-sync
-description: Read or update the team board (Trello, also called the board or task list). Use only when someone asks for it, such as to note something on the board, to update it at the end of the day, or to ask what is pending or who does what. Any language.
+description: Read or update the team's Trello board (also called the board). Use only when someone asks for it, such as to create or move a card, note something on the board, or update it at the end of the day. Questions about what is pending or what to work on go to next-task. Any language.
 ---
 
 # Trello sync

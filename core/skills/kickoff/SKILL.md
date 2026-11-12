@@ -47,4 +47,5 @@ Write `docs/design/game-brief.md` in the game repository, in English, one page:
 2. Set `game_name` in `docs/compliance/submission.toml` and in the harness's `harness.toml`, which freezes at 02:00.
 3. Complete the game design section of `docs/compliance/pre-jam-declaration.md` and set `declaration_complete = true`.
 4. Create `docs/design/scorecard.md` with one row per day and one column per criterion. Each night the team scores the game from 1 to 5. The devlog uses it.
-5. Ship the documents. Content starts at 02:00.
+5. Create `docs/design/tasks.md`: a table with the columns `ID`, `Day`, `Task`, `Owner`, `Status`, `Needs` and `Done when`, filled with day 1 tasks from the brief. Status is `todo`, `doing`, `done` or `blocked`. Owner is a name or `anyone`.
+6. Ship the documents. Content starts at 02:00.
