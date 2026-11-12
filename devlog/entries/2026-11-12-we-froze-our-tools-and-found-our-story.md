@@ -4,6 +4,10 @@
 
 Honestly, I think the project and the ideas we came up with are really good. I hope we can pull off everything we want to do. Fingers crossed!
 
+## From Ivan
+
+I'm really excited to be part of this jam! The idea we came up with together looks fun. We'll see which art style we choose for the project, and I'll find out what it's like to move the visuals forward in this environment.
+
 ## What changed
 
 Since the last entry we set out to finish the harness, test it against real work, and then stop touching it.
